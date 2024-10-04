@@ -1,0 +1,53 @@
+.container.mt-5
+  .row.justify-content-center
+    .col-md-8
+      h1.text-center Book Search
+
+      = form_with url: '', method: :get, local: true, class: "mb-4" do |f|
+        .input-group
+          = f.text_field :query, class: "form-control js-search-input", placeholder: "Search for a product...", value: params[:query]
+          .input-group-append
+            = f.submit "Search", class: "btn btn-primary"
+
+      - if @books.any?
+        table.table.table-hover
+          thead
+            tr
+              th Title
+              th Content
+          tbody.js-list-book-content
+            = render partial: 'list_book_content', collection: @books, as: :book
+
+      - else
+        p.text-center No products found.
+javascript:
+  function debounce(func, timeout = 500) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
+
+  const processChange = debounce((keyword) => callFetchBooks(keyword));
+  function callFetchBooks(keyword) {
+    $.ajax({
+      url: '/ajax_search_books',
+      type: 'GET',
+      dataType: 'json',
+      data: { query: keyword },
+      success: function (res) {
+        console.log(res)
+        $('.js-list-book-content').html(res.partial)
+      }
+    });
+  }
+  $(document).ready(function () {
+    const searchInput = $(".js-search-input");
+    searchInput.on("keyup", function () {
+      const keyword = searchInput.val();
+      processChange(keyword)
+    });
+  });

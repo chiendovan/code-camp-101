@@ -1,0 +1,13 @@
+h1= @book.title
+p= @book.content
+
+h2 Reviews
+
+#reviews data-book-id=@book.id
+  = render @book.reviews
+
+h3 Write a Review
+
+= form_with model: [@book, Review.new], local: false, id: 'new_review' do |form|
+  = form.text_area :content, placeholder: "Write your review here"
+  = form.submit "Submit"

@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  app:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+    command: bundle exec rails server --port=3000 --binding='0.0.0.0'
+    volumes:
+      - .:/var/www
+    ports:
+      - "18080:3000"
+    depends_on:
+      - redis
+  redis:
+    image: redis
