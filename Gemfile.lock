@@ -164,7 +164,7 @@ GEM
       ast (~> 2.4.1)
       racc
     popper_js (2.11.8)
-    pry (0.14.2)
+    pry (0.15.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
     psych (5.1.2)
@@ -322,7 +322,7 @@ DEPENDENCIES
   error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder
-  pry (~> 0.14.2)
+  pry (~> 0.15.0)
   puma (>= 5.0)
   rails (~> 7.2.1)
   rubocop-rails-omakase
