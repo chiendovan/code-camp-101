@@ -1,13 +1,29 @@
-h1= @book.title
-p= @book.content
+.container.mt-4
+  .row
+    .col-12
+      // Book details card
+      .card.mb-4
+        .card-body
+          h1.card-title= @book.title
+          p.card-text= @book.content
 
-h2 Reviews
+      // Reviews section  
+      .card.mb-4
+        .card-header
+          h2 Reviews
+        .card-body
+          #reviews.list-group.list-group-flush data-book-id=@book.id
+            = render partial: 'reviews/review', collection: @book.reviews, locals: { current_user: @current_user }
 
-#reviews data-book-id=@book.id
-  = render @book.reviews
-
-h3 Write a Review
-
-= form_with model: [@book, Review.new], local: false, id: 'new_review' do |form|
-  = form.text_area :content, placeholder: "Write your review here"
-  = form.submit "Submit"
+      // New review form
+      .card
+        .card-header
+          h3 Write a Review
+        .card-body
+          = form_with model: [@book, Review.new], local: false, id: 'new_review' do |form|
+            .mb-3
+              = form.text_area :content, 
+                class: 'form-control',
+                rows: 3,
+                placeholder: "Write your review here"
+            = form.submit "Submit Review", class: 'btn btn-primary'

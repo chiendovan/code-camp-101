@@ -1,3 +1,4 @@
 tr
   td = book.title
   td = book.content
+  td = link_to 'Review', "/books/#{book.id}", class: 'btn btn-primary'

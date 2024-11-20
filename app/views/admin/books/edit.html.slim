@@ -1,0 +1,10 @@
+h1 Edit Book
+
+= form_with model: @book, url: admin_book_path(@book), method: :patch, local: true do |form|
+  = form.label :title
+  = form.text_field :title, class: 'form-control'
+
+  = form.label :content
+  = form.text_area :content, class: 'form-control'
+
+  = form.submit 'Update Book', class: 'btn btn-primary' 

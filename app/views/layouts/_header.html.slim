@@ -1,0 +1,20 @@
+.container-fluid
+  nav.navbar.navbar-expand-lg.bg-light
+    .container
+      a.navbar-brand href="/"
+        h3 Review Books
+      
+      .collapse.navbar-collapse
+        ul.navbar-nav.ms-auto
+          - if user_signed_in?
+            li.nav-item
+              = link_to 'Đăng xuất', destroy_user_session_path, 
+                method: :delete, 
+                class: 'nav-link'
+          - else
+            li.nav-item
+              = link_to 'Đăng nhập', new_user_session_path, 
+                class: 'nav-link'
+            li.nav-item  
+              = link_to 'Đăng ký', new_user_registration_path,
+                class: 'nav-link'

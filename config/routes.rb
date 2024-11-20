@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "home#index"
   get 'ajax_search_books', to: 'home#ajax_search_books'
 
@@ -17,4 +18,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :users do
+    member do
+      post 'follow'
+      delete 'unfollow'
+    end
+  end
 end

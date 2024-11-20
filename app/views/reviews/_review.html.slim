@@ -1,3 +1,20 @@
-.review
-  p
-    = review.content
+.list-group-item
+  .d-flex.justify-content-between.align-items-start
+    .ms-2.me-auto
+      .d-flex.align-items-center
+        .fw-bold.me-2
+          = review.user.email
+        - if defined?(current_user) && current_user && current_user != review.user
+          - if current_user.following?(review.user)
+            = button_to 'Unfollow', unfollow_user_path(review.user), 
+              method: :delete,
+              class: 'btn btn-sm btn-outline-danger',
+              form: { data: { turbo: false } }
+          - else
+            = button_to 'Follow', follow_user_path(review.user), 
+              method: :post,
+              class: 'btn btn-sm btn-outline-primary',
+              form: { data: { turbo: false } }
+      = review.content
+    small.text-muted
+      = time_ago_in_words(review.created_at) + " ago"
