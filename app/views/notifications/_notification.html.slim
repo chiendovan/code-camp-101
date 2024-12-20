@@ -1,0 +1,11 @@
+.notification class=(notification.read? ? 'read' : 'unread') style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;"
+  - case notification.notifiable_type
+  - when 'Review'
+    = link_to book_path(notification.notifiable.book), class: "btn", style: "text-align: left;" do
+      = "#{notification.actor.email} đã thêm một review mới cho sách #{notification.notifiable.book.title}"
+  - when 'Follow'
+    = link_to "#", class: "btn", style: "text-align: left;" do
+      - if notification.action == "follow"
+        = "#{notification.actor.email} đã bắt đầu theo dõi bạn"
+      - else
+        = "#{notification.actor.email} đã ngừng theo dõi bạn"

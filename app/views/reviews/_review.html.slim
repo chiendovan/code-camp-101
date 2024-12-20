@@ -4,7 +4,7 @@
       .d-flex.align-items-center
         .fw-bold.me-2
           = review.user.email
-        - if defined?(current_user) && current_user && current_user != review.user
+        .follow-buttons class="#{defined?(current_user) && current_user && current_user != review.user ? 'd-flex' : 'd-none'}"
           - if current_user.following?(review.user)
             = button_to 'Unfollow', unfollow_user_path(review.user), 
               method: :delete,

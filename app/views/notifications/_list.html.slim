@@ -1,0 +1,7 @@
+.notifications-list
+  - if notifications.any?
+    - notifications.each do |notification|
+      = render 'notifications/notification', notification: notification
+  - else
+    .no-notifications
+      | Không có thông báo mới

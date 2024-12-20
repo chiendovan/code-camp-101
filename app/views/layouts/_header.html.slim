@@ -7,6 +7,15 @@
       .collapse.navbar-collapse
         ul.navbar-nav.ms-auto
           - if user_signed_in?
+            li.nav-item.notification-bell.dropdown.me-3
+              a.dropdown-toggle.d-flex.align-items-center href="#" data-bs-toggle="dropdown"
+                = image_tag "icons/bell.svg", class: "notification-icon", size: "24*24"
+                span.badge.rounded-pill.bg-danger.notification-count= current_user.notifications.unread.count
+              .dropdown-menu.notifications-dropdown.dropdown-menu-end
+                .notifications-header.d-flex.justify-content-between.align-items-center.p-2
+                  h6.mb-0 Thông báo
+                  a.mark-all-read.text-decoration-none href="#" Đánh dấu đã đọc
+                .notifications-content.p-2
             li.nav-item
               = link_to 'Đăng xuất', destroy_user_session_path, 
                 method: :delete, 

@@ -1,0 +1,46 @@
+.notification-bell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .notification-icon {
+    color: #6c757d;
+    transition: color 0.2s;
+    
+    &:hover {
+      color: #495057;
+    }
+  }
+  
+  .notification-count {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 18px;
+    height: 18px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+  }
+}
+
+.notifications-dropdown {
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  
+  .notifications-header {
+    border-bottom: 1px solid #dee2e6;
+    
+    .mark-all-read {
+      font-size: 0.875rem;
+      color: #6c757d;
+      
+      &:hover {
+        color: #495057;
+      }
+    }
+  }
+}

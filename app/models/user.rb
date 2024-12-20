@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_follows, source: :followed
   has_many :followers, through: :passive_follows, source: :follower
 
+  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
+
   def following?(other_user)
     following.include?(other_user)
   end

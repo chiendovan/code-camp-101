@@ -25,4 +25,10 @@ Rails.application.routes.draw do
       delete 'unfollow'
     end
   end
+
+  resources :notifications, only: [:index] do
+    collection do
+      post :mark_as_read
+    end
+  end
 end
